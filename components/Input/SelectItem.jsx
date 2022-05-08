@@ -8,21 +8,28 @@ const StyledSelectItem = styled('div', {
     gap: 16,
     display: 'flex',
     padding: '6px 16px',
-    background: '$primaryBackground',
-    transition: 'background 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+    fontWeight: 600,
     whiteSpace: 'pre',
     alignItems: 'center',
+    background: '$primaryBackground',
+    transition: 'background 250ms cubic-bezier(0.4, 0, 0.2, 1)',
     borderBottom: '1px solid $tagBorder',
     justifyContent: 'space-between',
 
     '&:hover': {
         backgroundColor: '$secondaryBackground2'
+    },
+
+    variants: {
+        selected: {
+            true: { fontWeight: 700 }
+        }
     }
 });
 
 export default function SelectItem({ _set, _sel, value, children }) {
     return (
-        <StyledSelectItem onClick={() => _set(value)}>
+        <StyledSelectItem onClick={() => _set(value)} selected={_sel}>
             <Grid width="fit-content" spacing="12px" alignItems="center">
                 {children}
             </Grid>
