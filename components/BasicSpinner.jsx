@@ -24,9 +24,9 @@ const StyledSpinner2 = styled('span', {
     bottom: 0,
     margin: "auto",
     height: "var(--size)",
-    border: `calc(var(--size) / 10) solid #ffffff80`,
+    border: `calc(var(--size) / 10) solid $secondaryColor`,
     position: "absolute",
-    borderTop: `calc(var(--size) / 10) solid #fff`,
+    borderTop: `calc(var(--size) / 10) solid $primaryColor`,
     borderRadius: "50%"
 });
 

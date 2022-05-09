@@ -8,7 +8,7 @@ const StyledSelectItem = styled('div', {
     gap: 16,
     display: 'flex',
     padding: '6px 16px',
-    fontWeight: 600,
+    fontWeight: 500,
     whiteSpace: 'pre',
     alignItems: 'center',
     background: '$primaryBackground',
@@ -22,7 +22,7 @@ const StyledSelectItem = styled('div', {
 
     variants: {
         selected: {
-            true: { fontWeight: 700 }
+            true: { fontWeight: 650 }
         }
     }
 });
@@ -33,7 +33,7 @@ export default function SelectItem({ _set, _sel, value, children }) {
             <Grid width="fit-content" spacing="12px" alignItems="center">
                 {children}
             </Grid>
-            {_sel && <Check size={24}/>}
+            {_sel && <Check size={20}/>}
         </StyledSelectItem>
     );
 };

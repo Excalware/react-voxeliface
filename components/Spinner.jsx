@@ -57,7 +57,7 @@ const StyledSpinner2 = styled('span', {
         border: `calc(var(--size) / 10.66666666) solid transparent`,
         content: "",
         position: "absolute",
-        borderTop: `calc(var(--size) / 10.66666666) solid #fff`,
+        borderTop: `calc(var(--size) / 10.66666666) solid $primaryColor`,
         animation: `${Animation3} 1.5s cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite`,
         borderRadius: "50%"
     },
@@ -70,8 +70,9 @@ const StyledSpinner2 = styled('span', {
         bottom: 0,
         height: "var(--size)",
         margin: "auto",
-        border: `calc(var(--size) / 10.66666666) solid rgba(255, 255, 255, .5)`,
+        border: `calc(var(--size) / 10.66666666) solid $secondaryColor`,
         content: "",
+        opacity: 0.5,
         position: "absolute",
         borderRadius: "50%"
     }

@@ -39,7 +39,7 @@ const StyledPages = styled('div', {
     width: '100%',
     display: 'flex',
     overflow: 'hidden',
-    background: '#0000001a',
+    background: '#13131405',
     flexDirection: 'row'
 });
 

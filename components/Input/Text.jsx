@@ -2,60 +2,74 @@ import React from 'react';
 import { styled } from '@stitches/react';
 
 const StyledInput = styled('div', {
-    position: "relative"
+    display: 'flex',
+    position: 'relative',
+    alignItems: 'center',
 });
 
 const StyledInputTag = styled('input', {
-    color: "$secondaryColor",
-    width: "100%",
-    border: "1px solid $tagBorder",
-    outline: "none",
-    padding: "8px 16px",
-    minWidth: 196,
-    fontSize: "0.9rem",
-    background: "none",
-    transition: "border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+    color: '$primaryColor',
+    width: '100%',
+    border: '1px solid $secondaryBorder',
+    outline: 'none',
+    padding: '.375rem 1rem',
+    fontSize: '.75rem',
+    background: '$primaryBackground',
+    transition: 'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     fontWeight: 500,
-    fontFamily: "Gotham, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif",
-    borderRadius: 8,
+    fontFamily: 'Nunito',
+    borderRadius: '0 4px 4px 0',
 
-    "&:read-only": {
-        cursor: "default"
+    '&:read-only': {
+        cursor: 'default'
     },
-    "&:not(:read-only):focus": {
-        background: "rgba(255, 255, 255, 0.01)",
-        borderColor: "#797979"
+    '&:not(:read-only):focus': {
+        background: '$primaryBackground',
+        borderColor: '$secondaryBorder2'
     },
-    "&:disabled": {
-        cursor: "not-allowed",
-        opacity: "50%"
+    '&:disabled': {
+        cursor: 'not-allowed',
+        opacity: '50%'
+    },
+    '&::placeholder': {
+        color: '$secondaryColor'
     }
 });
 
 const StyledButtons = styled('div', {
-    top: 0,
-    right: 0,
-    height: "100%",
+    height: '100%',
     display: 'flex',
-    padding: ".25rem",
-    position: "absolute",
 
     '& a': {
-        height: 'auto'
+        color: '$primaryColor',
+        height: '100%',
+        boxShadow: 'inset 0 0 0 1px var(--colors-secondaryBorder)',
+        textShadow: 'none',
+        background: '$primaryBackground',
+        borderRadius: '4px 0 0 4px'
+    },
+    '& a:hover': {
+        boxShadow: 'inset 0 0 0 1px var(--colors-secondaryBorder2)',
+        background: '$primaryBackground'
+    },
+    '& a:active': {
+        background: '$secondaryBackground'
     }
 });
 
-export default class TextInput extends React.Component {
-    render() {
-        return (
-            <StyledInput style={{
-                width: this.props.width
-            }}>
-                <StyledInputTag id={this.props.id} value={this.props.value} onBlur={this.props.onBlur} readOnly={this.props.readOnly} onChange={this.props.onChange} disabled={this.props.disabled} placeholder={this.props.placeholder}/>
-                <StyledButtons>
-                    {this.props.children}
-                </StyledButtons>
-            </StyledInput>
-        );
-    }
+export default function TextInput({ id, width, value, onBlur, onChange, children, readOnly, disabled, placeholder }) {
+    return (
+        <StyledInput style={{
+            minWidth: width ?? 196
+        }}>
+            <StyledButtons>
+                {children}
+            </StyledButtons>
+            <StyledInputTag id={id} value={value} onBlur={onBlur} readOnly={readOnly} onChange={onChange} disabled={disabled} placeholder={placeholder} css={{
+                fontWeight: value ? 600 : null,
+                borderLeft: children ? 'none' : null,
+                borderRadius: children ? null : 4
+            }}/>
+        </StyledInput>
+    );
 };
