@@ -46,6 +46,20 @@ const StyledButton = styled('a', {
             }
         },
         theme: {
+            accent: {
+                color: "$buttonColor",
+                background: "$buttonBackground",
+                "&:hover": {
+                    background: "$buttonBackgroundHover"
+                },
+                "&:active": {
+                    background: "$buttonBackgroundActive"
+                },
+                "&[disabled]": {
+                    color: '$buttonColorDisabled',
+                    background: "$buttonBackgroundDisabled"
+                }
+            },
             primary: {
                 color: "#fff",
                 background: "#4ebd93",
