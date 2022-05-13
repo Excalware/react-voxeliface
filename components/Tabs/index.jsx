@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import { styled } from '@stitches/react';
 import { animated, useTransition } from 'react-spring';
 
-import Grid from './Grid';
+import Grid from '../Grid';
 const StyledTabs = styled('div', {
     width: '100%',
     border: '1px solid $secondaryBorder',
@@ -14,7 +14,7 @@ const StyledTabs = styled('div', {
 
 const StyledTabsContainer = styled('div', {
     width: '100%',
-    height: '32px',
+    height: '34px',
     display: 'flex',
     userSelect: 'none',
     background: '$secondaryBackground2'
@@ -28,7 +28,7 @@ const StyledTab = styled('button', {
     fontSize: '.75rem',
     fontWeight: 500,
     background: 'none',
-    fontFamily: 'Nunito, sans-serif',
+    fontFamily: 'Nunito',
 
     '&:hover': {
         cursor: 'pointer'
@@ -43,45 +43,45 @@ const StyledPages = styled('div', {
     flexDirection: 'row'
 });
 
-export default function Tabs({ css, tabs, pages, value, onChange }) {
-    pages = pages.filter(p => p);
-    tabs = tabs.filter(t => t && !t[2]);
+export default function Tabs({ css, value, onChange, children, borderRadius }) {
+    children = children.filter(c => !c.props.disabled);
 
-    let tab = tabs.find(p => p[1] === value);
-    let page = pages.find(p => p[0] === value);
-    if(!tab) {
-        page = pages[tabs[0][1]];
-        value = tabs[0][1];
-    }
-    const tabRef = useRef();
-    const transitions = useTransition([value], {
+    const item = children.find(c => c.props.value === value) ?? children[0];
+    const [tabRect, setTabRect] = useState();
+    const [tabsRect, setTabsRect] = useState();
+    const handleTabRect = useCallback(node => setTabRect(node?.getBoundingClientRect()), []);
+    const handleTabsRect = useCallback(node => setTabsRect(node?.getBoundingClientRect()), []);
+    const transitions = useTransition([item.props.value], {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 }
     });
-
+    console.log(tabRect, tabsRect);
     return (
         <StyledTabs css={{
-            borderRadius: page[3] && 0,
+            borderRadius,
             ...css
         }}>
-            <StyledTabsContainer css={{
+            <StyledTabsContainer ref={handleTabsRect} css={{
                 position: 'relative',
-                borderRadius: page[3] && 0
+                borderRadius
             }}>
-                {tabs.map(([text, val], index) =>
-                    <StyledTab key={index} css={{
-                        width: `${100 / tabs.length}%`,
-                        color: value === val && '$primaryColor',
-                        fontWeight: value === val && 625,
+                {children.map(({ props }, index) =>
+                    <StyledTab key={index} ref={props.value === value ? handleTabRect : null} css={{
+                        flex: 1,
+                        color: props.value === value && '$primaryColor',
+                        padding: '0 10px',
+                        background: props.value === value && '$secondaryBackground',
+                        whiteSpace: 'nowrap',
+                        fontWeight: props.value === value && 625,
                         transition: 'all 250ms cubic-bezier(0.4, 0, 0.2, 1)'
-                    }} onClick={_ => onChange({ target: { value: val }})}>
-                        {text}
+                    }} onClick={_ => onChange({ target: { value: props.value }})}>
+                        {props.name}
                     </StyledTab>
                 )}
                 <Grid css={{
-                    left: `${(100 / tabs.length) * Math.max(0, tabs.indexOf(tab))}%`,
-                    width: `${100 / tabs.length}%`,
+                    left: tabRect?.x - tabsRect?.x,
+                    width: tabRect?.width,
                     height: 2,
                     bottom: 0,
                     position: 'absolute',
@@ -99,12 +99,11 @@ export default function Tabs({ css, tabs, pages, value, onChange }) {
                     <animated.div style={{
                         width: '100%',
                         height: 'inherit',
-                        padding: pages[value]?.[2] ? 0 : '.6rem .8rem',
                         overflow: 'auto',
                         position: 'absolute',
                         ...style
                     }}>
-                        {pages[value]?.[1]}
+                        {children.find(c => c.props.value === value)}
                     </animated.div>
                 )}
             </StyledPages>
