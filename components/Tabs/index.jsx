@@ -56,7 +56,6 @@ export default function Tabs({ css, value, onChange, children, borderRadius }) {
         enter: { opacity: 1 },
         leave: { opacity: 0 }
     });
-    console.log(tabRect, tabsRect);
     return (
         <StyledTabs css={{
             borderRadius,
