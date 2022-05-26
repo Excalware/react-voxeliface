@@ -3,19 +3,19 @@ import { styled } from '@stitches/react';
 
 const StyledHeader = styled('header', {
     top: 0,
-    width: "100%",
+    width: '100%',
     zIndex: 1100,
-    padding: "0 24px",
-    position: "sticky",
+    display: 'flex',
+    padding: '0 24px',
+    flexWrap: 'wrap',
+    position: 'sticky',
     minHeight: 64,
+    boxSizing: 'border-box',
     userSelect: 'none',
-    background: "$headerBackground",
-
-    display: "flex",
-    flexWrap: "wrap",
-    boxSizing: "border-box",
-    alignItems: "center",
-    justifyContent: "space-between"
+    alignItems: 'center',
+    background: '$headerBackground',
+    transition: 'background 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+    justifyContent: 'space-between'
 });
 
 const StyledBrand = styled('a', {

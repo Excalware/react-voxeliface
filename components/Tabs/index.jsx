@@ -56,6 +56,7 @@ export default function Tabs({ css, value, onChange, children, borderRadius }) {
         enter: { opacity: 1 },
         leave: { opacity: 0 }
     });
+    value = item?.props.value ?? value;
     return (
         <StyledTabs css={{
             borderRadius,

@@ -2,7 +2,8 @@ import React from 'react';
 import { styled } from '@stitches/react';
 
 const StyledGrid = styled('div', {
-    display: "flex"
+    display: 'flex',
+    transition: 'background 250ms cubic-bezier(0.4, 0, 0.2, 1)'
 });
 
 export default function Grid(props) {

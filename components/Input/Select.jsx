@@ -1,116 +1,125 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { styled } from '@stitches/react';
-import { CaretDownFill } from 'react-bootstrap-icons';
+import { Check, ChevronDown } from 'react-bootstrap-icons';
+import * as Select from '@radix-ui/react-select';
 
-import Grid from '../Grid';
+import Grid from '/voxeliface/components/Grid';
+import ThemeContext from '/voxeliface/contexts/theme';
 
-const StyledSelect = styled('button', {
+import { getTheme } from '/voxeliface/lib/themes';
+const StyledTrigger = styled(Select.Trigger, {
+    all: 'unset',
+    gap: '2rem',
     color: '$primaryColor',
-    width: 'fit-content',
     border: '1px solid $secondaryBorder',
-    outline: 0,
-    display: 'flex',
+    display: 'inline-flex',
     padding: '.375rem 1rem',
-    position: 'relative',
-    minWidth: 196,
     fontSize: '.75rem',
-    background: '$primaryBackground',
-    transition: 'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     fontWeight: 500,
-    alignItems: 'center',
     fontFamily: 'Nunito',
-    borderRadius: 8,
+    alignItems: 'center',
+    background: '$primaryBackground',
+    transition: 'border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    borderRadius: 4,
+    justifyContent: 'space-between',
 
-    '&:hover': {
-        cursor: 'pointer',
-        background: '$secondaryBackground2',
+    '&:not(:disabled):hover': {
         borderColor: '$secondaryBorder2'
     },
-
-    variants: {
-        disabled: {
-            true: {
-                cursor: 'not-allowed',
-                opacity: .5,
-                pointerEvents: 'none'
-            }
-        },
-        placeholder: {
-            true: {
-                color: '$secondaryColor'
-            }
-        }
+    '&:disabled': {
+        cursor: 'not-allowed',
+        opacity: '50%'
     }
 });
-
-const StyledInput = styled('input', {
-    top: 0,
-    left: 0,
-    width: '100%',
-    opacity: 0,
-    position: 'absolute',
-    pointerEvents: 'none'
+const StyledIcon = styled(Select.Icon, {
+    display: 'flex'
 });
-
-const StyledDropdown = styled('div', {
-    top: 'calc(100% + 8px)',
-    left: '50%',
-    width: '100%',
-    border: '1px solid $tagBorder',
-    zIndex: 1000,
+const StyledContent = styled(Select.Content, {
+    border: '1px solid $secondaryBorder',
+    overflow: 'hidden',
+    background: '$primaryBackground',
+    borderRadius: 4
+});
+const StyledViewport = styled(Select.Viewport, {
+    padding: '.5rem .75rem'
+});
+const StyledItem = styled(Select.Item, {
+    all: 'unset',
+    color: '$primaryColor',
+    height: 24,
     display: 'flex',
-    overflow: 'hidden auto',
-    position: 'absolute',
-    maxHeight: '14rem',
-    transform: 'translateX(-50%)',
-    borderRadius: 8,
-    flexDirection: 'column',
+    padding: '.25rem .5rem',
+    fontSize: '.75rem',
+    position: 'relative',
+    fontWeight: 500,
+    userSelect: 'none',
+    fontFamily: 'Nunito',
+    alignItems: 'center',
+    transition: 'background 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+    borderRadius: 4,
 
-    '& *:last-child': {
-        border: 'none'
+    '&[data-disabled]': {
+        color: '$secondaryColor',
+        pointerEvents: 'none',
+    },
+
+    '&:focus': {
+        background: '$buttonBackground'
     }
 });
+const StyledItemIndicator = styled(Select.ItemIndicator, {
+    right: 8,
+    display: 'inline-flex',
+    position: 'absolute'
+});
+const StyledLabel = styled(Select.Label, {
+    color: '$secondaryColor',
+    padding: '0 .5rem',
+    fontSize: '.8rem',
+    fontWeight: 400,
+    fontFamily: 'Nunito',
+    lineHeight: '24px'
+});
+const StyledSeparator = styled(Select.Separator, {
+    height: 1,
+    margin: '.5rem 0',
+    background: '$secondaryBackground'
+});
 
-export default function Select({ id, multi, value, readOnly, children, onChange, disabled, placeholder, renderValues }) {
-    const [drop, setDrop] = useState(false);
-    const changeValue = newValue => {
-        if(multi) {
-            const index = value.indexOf(newValue);
-            if(index >= 0)
-                newValue = value.filter(v => v !== newValue);
-            else
-                newValue = [...value, newValue];
-        }
-        onChange({ target: { value: newValue } });
-        setDrop(false);
-    };
-    const dropdown = () => {
-        setDrop(disabled ? false : !drop);
-    };
+export function Item({ value, children, disabled }) {
+    return <StyledItem value={value} disabled={disabled}>
+        <Select.ItemText>
+            <Grid spacing={8} alignItems="center">{children}</Grid>
+        </Select.ItemText>
+        <StyledItemIndicator>
+            <Check size={20}/>
+        </StyledItemIndicator>
+    </StyledItem>;
+};
+export function Group({ name, children }) {
+    return <Select.Group>
+        <StyledLabel>{name ?? 'Group'}</StyledLabel>
+        {children}
+    </Select.Group>;
+};
+export const Separator = StyledSeparator;
+
+export function Root({ value, onChange, children, disabled, defaultValue }) {
     return (
-        <StyledSelect onClick={dropdown} disabled={disabled} placeholder={!!placeholder && !value}>
-            <StyledInput id={id} value={value} readOnly={readOnly} disabled={disabled} onChange={onChange} placeholder={placeholder} styled={{
-                borderRadius: drop ? '4px 4px 0 0' : '4px',
-            }}/>
-            <Grid width="100%" spacing="8px" alignItems="center" justifyContent="space-between">
-                <Grid spacing="12px" alignItems="center">
-                    {value !== undefined ? multi ? renderValues(children.filter(c => value.indexOf(c.props.value) >= 0), value) : children.find(c => c.props.value === value)?.props?.children : placeholder}
-                </Grid>
-                <CaretDownFill color={`var(--colors-primaryColor)`}/>
-            </Grid>
-            {drop &&
-                <StyledDropdown direction="vertical">
-                    {children.map((child, index) =>
-                        React.cloneElement(child, {
-                            key: index,
-                            _set: changeValue,
-                            _sel: multi ?
-                                value.indexOf(child.props.value) >= 0 :
-                                value === child.props.value
-                        })
-                    )}
-                </StyledDropdown>
-            }
-        </StyledSelect>
+        <ThemeContext.Consumer>{({ theme }) => {
+            return <Select.Root value={value} defaultValue={defaultValue} onValueChange={onChange}>
+                <StyledTrigger disabled={disabled}>
+                    <Select.Value/>
+                    <StyledIcon>
+                        <ChevronDown size={14}/>
+                    </StyledIcon>
+                </StyledTrigger>
+                <StyledContent className={getTheme(theme)}>
+                    <StyledViewport>
+                        {children}
+                    </StyledViewport>
+                </StyledContent>
+            </Select.Root>
+        }}</ThemeContext.Consumer>
     );
 };

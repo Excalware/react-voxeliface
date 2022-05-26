@@ -20,16 +20,20 @@ const StyledInputTag = styled('input', {
     fontFamily: 'Nunito',
     borderRadius: '0 4px 4px 0',
 
+    '&:not(:read-only):hover': {
+        borderColor: '$secondaryBorder2'
+    },
     '&:read-only': {
+        color: '$secondaryColor',
         cursor: 'default'
     },
     '&:not(:read-only):focus': {
-        background: '$primaryBackground',
+        background: '$secondaryBackground2',
         borderColor: '$secondaryBorder2'
     },
     '&:disabled': {
         cursor: 'not-allowed',
-        opacity: '50%'
+        opacity: .5
     },
     '&::placeholder': {
         color: '$secondaryColor'
@@ -44,16 +48,21 @@ const StyledButtons = styled('div', {
         color: '$primaryColor',
         height: '100%',
         boxShadow: 'inset 0 0 0 1px var(--colors-secondaryBorder)',
+        fontWeight: 400,
         textShadow: 'none',
         background: '$primaryBackground',
         borderRadius: '4px 0 0 4px'
     },
-    '& a:hover': {
+    '& a:not([disabled]):hover': {
         boxShadow: 'inset 0 0 0 1px var(--colors-secondaryBorder2)',
         background: '$primaryBackground'
     },
     '& a:active': {
         background: '$secondaryBackground'
+    },
+    '& a[disabled]': {
+        opacity: .5,
+        background: '$primaryBackground'
     }
 });
 
@@ -65,7 +74,7 @@ export default function TextInput({ id, width, value, onBlur, onChange, children
             <StyledButtons>
                 {children}
             </StyledButtons>
-            <StyledInputTag id={id} value={value} onBlur={onBlur} readOnly={readOnly} onChange={onChange} disabled={disabled} placeholder={placeholder} css={{
+            <StyledInputTag id={id} value={value} onBlur={onBlur} readOnly={readOnly} onChange={event => onChange(event.target.value)} disabled={disabled} placeholder={placeholder} css={{
                 fontWeight: value ? 600 : null,
                 borderLeft: children ? 'none' : null,
                 borderRadius: children ? null : 4
