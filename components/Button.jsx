@@ -131,13 +131,13 @@ const StyledButton = styled('a', {
     }
 });
 
-export default function Button({ size, theme, onClick, disabled, children, ...props }) {
+export default React.forwardRef(function Button({ size, theme, onClick, disabled, children, ...props }, ref) {
     return (
-        <StyledButton {...props} size={size ?? "small"} theme={theme ?? "primary"} onClick={(...args) => {
+        <StyledButton {...props} ref={ref} size={size ?? "small"} theme={theme ?? "primary"} onClick={(...args) => {
             if(!disabled && onClick)
                 return onClick(...args);
         }} disabled={disabled}>
             {children ?? "Button"}
         </StyledButton>
     );
-};
+});
