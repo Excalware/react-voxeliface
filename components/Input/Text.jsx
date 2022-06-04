@@ -66,7 +66,7 @@ const StyledButtons = styled('div', {
     }
 });
 
-export default function TextInput({ id, width, value, onBlur, onChange, children, readOnly, disabled, placeholder }) {
+export default function TextInput({ id, width, value, onBlur, onInput, onChange, children, readOnly, disabled, placeholder }) {
     return (
         <StyledInput style={{
             minWidth: width ?? 196
@@ -74,7 +74,8 @@ export default function TextInput({ id, width, value, onBlur, onChange, children
             <StyledButtons>
                 {children}
             </StyledButtons>
-            <StyledInputTag id={id} value={value} onBlur={onBlur} readOnly={readOnly} onChange={event => onChange(event.target.value)} disabled={disabled} placeholder={placeholder} css={{
+            <StyledInputTag id={id} value={value} onBlur={onBlur} onInput={onInput} readOnly={readOnly} onChange={event => onChange(event.target.value)} disabled={disabled} placeholder={placeholder} css={{
+                width: width ?? 196,
                 fontWeight: value ? 600 : null,
                 borderLeft: children ? 'none' : null,
                 borderRadius: children ? null : 4
