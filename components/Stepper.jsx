@@ -51,17 +51,19 @@ const MobileGrid = styled(Grid, {
     backgroundColor: 'rgba(0, 0, 0, 0.2)'
 });
 
+//TODO rework.
 export default function Stepper({ step, steps }) {
+    const divided = [...steps];
     const isMobile = util.isMobile();
-    const stepIndex = 0;
-    for (let i = 1; i < steps.length; i += 2)
-        steps.splice(i, 0, "divide");
-    
+    for (let i = 0; i < divided.length; i++)
+        divided[i][2] = i;
+    for (let i = 1; i < divided.length; i += 2)
+        divided.splice(i, 0, 'divide');
     return (
         <Grid width={isMobile ? "100%" : null} direction="vertical">
-            <Grid padding={isMobile ? "16px" : "24px"} css={{
+            <Grid padding={isMobile ? 16 : 24} css={{
                 alignItems: 'center',
-                background: '#2C2C2C',
+                background: '$secondaryBackground2',
                 borderRadius: 8,
                 justifyContent: 'center',
 
@@ -71,26 +73,35 @@ export default function Stepper({ step, steps }) {
             }}>
                 {
                     isMobile ?
-                        <MobileGrid spacing="8px" alignItems="center">
+                        <MobileGrid spacing={8} alignItems="center">
                             <StepComponent2 css={{
                                 color: '#00E87E'
                             }}>
                                 <Typography text={`Step ${step + 1}/${steps.length}`} size="0.75rem" color={"#000000de"}/>
                             </StepComponent2>
-                            <Typography text={steps[step][0]} size="12px" color="white" weight={500}/>
+                            <Typography text={steps[step][0]} size={12} color="$secondaryColor" weight={500}/>
                         </MobileGrid>
                     :
-                        steps.map((step, index) =>
-                            step == "divide" ?
+                        divided.map((item, index) =>
+                            item == 'divide' ?
                                 <DividerComponent key={index}/>
                             :
-                                <Grid key={index} margin="0 8px" spacing="8px" alignItems="center">
+                                <Grid key={index} margin="0 8px" spacing={8} alignItems="center">
                                     <StepComponent css={{
-                                        background: stepIndex <= step ? "#00E87E" : "rgba(255, 255, 255, 0.5)"
+                                        background: item[2] <= step ? '#00E87E' : '$secondaryColor'
                                     }}>
-                                        <Typography text={stepIndex += 1} size="0.75rem" color={"#000000de"}/>
+                                        <Typography size="0.75rem" color="#000000de">
+                                            {item[2] + 1}
+                                        </Typography>
                                     </StepComponent>
-                                    <Typography text={step[0]} size="14px" color={stepIndex - 1 <= step ? "white" : "rgba(255, 255, 255, 0.5)"} weight={stepIndex - 1 <= step ? 500 : 300}/>
+                                    <Typography
+                                        size={14}
+                                        color={item[2] <= step ? '$primaryColor' : '$secondaryColor'}
+                                        family="Nunito Sans"
+                                        weight={item[2] <= step ? 400 : 300}
+                                    >
+                                        {item[0]}
+                                    </Typography>
                                 </Grid>
                         )
                 }

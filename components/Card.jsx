@@ -3,15 +3,14 @@ import React from 'react';
 import Grid from './Grid';
 import Typography from './Typography';
 
-export default function Card({ css, title, buttons, padding, children }) {
+export default function Card({ css, title, buttons, padding, children, direction }) {
     return (
         <Grid
             direction="vertical"
-            background="#222222"
+            background="$primaryBackground"
             borderRadius={8}
             css={{
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                overflow: 'hidden',
+                border: '1px solid $secondaryBorder',
 
                 '@media only screen and (max-width: 768px)': {
                     borderLeft: 'none',
@@ -21,22 +20,22 @@ export default function Card({ css, title, buttons, padding, children }) {
                 ...css
             }}
         >
-            <Grid padding="16px 24px" alignItems="center" justifyContent="space-between" css={{
-                borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+            <Grid padding=".825rem 1.25rem" alignItems="center" justifyContent="space-between" css={{
+                borderBottom: '1px solid $secondaryBorder'
             }}>
-                {title == "string" ?
+                {typeof title === "string" ?
                     <Typography
                         text={title ?? "Card Title"}
-                        size="1.2rem"
-                        color="white"
+                        color="$primaryColor"
                         weight={600}
+                        family="Nunito Sans"
                     />
                 : title}
-                <Grid spacing="8px" alignItems="center">
+                <Grid spacing={8} alignItems="center">
                     {buttons}
                 </Grid>
             </Grid>
-            <Grid wrap="wrap" padding={padding ?? "16px 24px"}>
+            <Grid wrap="wrap" padding={padding ?? ".825rem 1.25rem"} direction={direction}>
                 {children}
             </Grid>
         </Grid>

@@ -2,18 +2,20 @@ import React from 'react';
 import { styled } from '@stitches/react';
 
 const StyledTypography = styled('span', {
-    color: "#fff",
+    gap: 8,
+    color: '#fff',
     margin: 0,
-    display: "flex",
-    fontSize: "1rem",
-    textAlign: "center",
+    display: 'flex',
+    fontSize: '1rem',
+    textAlign: 'center',
     fontWeight: 500,
-    alignItems: "center"
+    alignItems: 'center'
 });
 
 export default function Typography(props) {
     return (
         <StyledTypography {...props} css={{
+            gap: props.spacing,
             width: props.width,
             color: props.color,
             margin: props.margin,
