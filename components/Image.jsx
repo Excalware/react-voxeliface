@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Grid from './Grid';
-
 export default function Image({ src, css, size, width, height, children, borderRadius, ...props }) {
     return (
         <Grid alignItems="center" justifyContent="center" {...props} css={{

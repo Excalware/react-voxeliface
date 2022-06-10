@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { styled } from '@stitches/react';
 
 const StyledGrid = styled('div', {
@@ -6,9 +6,9 @@ const StyledGrid = styled('div', {
     transition: 'background 250ms cubic-bezier(0.4, 0, 0.2, 1)'
 });
 
-export default function Grid(props) {
+export default forwardRef(function Grid(props, ref) {
     return (
-        <StyledGrid onClick={props.onClick} className={props.className} css={{
+        <StyledGrid ref={ref} onClick={props.onClick} className={props.className} css={{
             gap: props.spacing,
             width: props.width,
             margin: props.margin,
@@ -37,4 +37,4 @@ export default function Grid(props) {
             {props.children}
         </StyledGrid>
     );
-};
+});

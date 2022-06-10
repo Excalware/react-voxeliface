@@ -3,27 +3,27 @@ import { styled } from '@stitches/react';
 
 const StyledButton = styled('a', {
     gap: 8,
-    width: "fit-content",
-    cursor: "pointer",
-    height: "fit-content",
+    width: 'fit-content',
+    cursor: 'pointer',
+    height: 'fit-content',
     outline: 0,
-    display: "inline-flex",
-    position: "relative",
-    fontSize: ".75rem",
-    transition: "background 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1)",
-    fontFamily: "Nunito, sans-serif",
+    display: 'inline-flex',
+    position: 'relative',
+    fontSize: '.75rem',
+    transition: 'background 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+    fontFamily: 'Nunito',
     fontWeight: 625,
     lineHeight: 1.43,
-    userSelect: "none",
-    alignItems: "center",
-    whiteSpace: "nowrap",
-    textShadow: "0 0 4px rgba(0, 0, 0, 0.3)",
-    borderRadius: ".25rem",
-    textDecoration: "none",
-    justifyContent: "center",
+    userSelect: 'none',
+    alignItems: 'center',
+    whiteSpace: 'nowrap',
+    textShadow: '0 0 2px rgba(0, 0, 0, 0.4)',
+    borderRadius: '.25rem',
+    textDecoration: 'none',
+    justifyContent: 'center',
 
-    "&[disabled]": {
-        cursor: "not-allowed"
+    '&[disabled]': {
+        cursor: 'not-allowed'
     },
 
     variants: {
@@ -38,78 +38,86 @@ const StyledButton = styled('a', {
                 borderRadius: 6
             },
             small: {
-                padding: ".375rem .625rem"
+                padding: '.375rem .625rem'
             },
             smaller: {
-                padding: "0.275rem 0.55rem",
-                fontWeight: "500"
+                padding: '0.275rem 0.55rem',
+                fontWeight: 500
             }
         },
         theme: {
             accent: {
-                color: "$buttonColor",
-                background: "$buttonBackground",
-                "&:hover": {
-                    background: "$buttonBackgroundHover"
+                color: '$buttonColor',
+                boxShadow: '$buttonShadow',
+                background: '$buttonBackground',
+                '&:not([disabled]):hover': {
+                    background: '$buttonBackgroundHover'
                 },
-                "&:active": {
-                    background: "$buttonBackgroundActive"
+                '&:active': {
+                    background: '$buttonBackgroundActive'
                 },
-                "&[disabled]": {
+                '&[disabled]': {
                     color: '$buttonColorDisabled',
-                    background: "$buttonBackgroundDisabled"
+                    boxShadow: '$buttonShadowDisabled',
+                    background: '$buttonBackgroundDisabled'
                 }
             },
             primary: {
-                color: "#fff",
-                background: "#4ebd93",
-                "&:hover": {
-                    background: "#5da58a"
+                color: '#e2f1e8',
+                boxShadow: '$buttonShadow',
+                background: '#4ebd93',
+                '&:not([disabled]):hover': {
+                    color: '#fff',
+                    background: '#56c59a'
                 },
-                "&:active": {
-                    background: "#4ebd93"
+                '&:active': {
+                    background: '#4ebd93'
                 },
-                "&[disabled]": {
-                    color: "#cfcfcf",
-                    background: "#578976"
+                '&[disabled]': {
+                    color: '#cfcfcf',
+                    boxShadow: '$buttonShadowDisabled',
+                    background: '#578976'
                 }
             },
             secondary: {
-                color: "#fff",
-                boxShadow: "inset 0 0 0 1px #2a2a2a",
-                background: "#2a2a2a",
-                "&:hover": {
-                    background: "#1f1f1f",
-                    borderColor: "#e0e0e00d",
+                color: '#dee4ef',
+                boxShadow: '$buttonShadowDark',
+                background: '#2b2c2e',
+                '&:not([disabled]):hover': {
+                    color: '#eaf1ff',
+                    boxShadow: '$buttonShadow',
+                    background: '#36383a',
                 },
-                "&:active": {
-                    background: "#2a2a2a"
+                '&:active': {
+                    background: '#2a2a2a'
                 },
-                "&[disabled]": {
-                    color: "#cfcfcf",
-                    opacity: 0.5
+                '&[disabled]': {
+                    color: '#a5a5a5',
+                    boxShadow: '$buttonShadowDisabled',
+                    background: '#1e1f20'
                 }
             },
             tertiary: {
-                color: "#fff",
-                boxShadow: "0 0 0 1px #2a2a2a",
-                background: "none",
-                "&:hover": {
-                    borderColor: "#e0e0e00d"
+                color: '#fff',
+                boxShadow: '0 0 0 1px #2a2a2a, $buttonShadow',
+                background: 'none',
+                '&:not([disabled]):hover': {
+                    borderColor: '#e0e0e00d'
                 },
-                "&[disabled]": {
-                    color: "#cfcfcf",
+                '&[disabled]': {
+                    color: '#cfcfcf',
                     opacity: 0.5
                 }
             },
             alert: {
-                color: "$red10",
-                background: "$red6",
-                "&:hover": {
-                    background: "$red7"
+                color: '$red10',
+                boxShadow: 'buttonShadow',
+                background: '$red6',
+                '&:not([disabled]):hover': {
+                    background: '$red7'
                 },
-                "&[disabled]": {
-                    color: "#cfcfcf",
+                '&[disabled]': {
+                    color: '#cfcfcf',
                     opacity: 0.5
                 }
             }
@@ -133,11 +141,11 @@ const StyledButton = styled('a', {
 
 export default React.forwardRef(function Button({ size, theme, onClick, disabled, children, ...props }, ref) {
     return (
-        <StyledButton {...props} ref={ref} size={size ?? "small"} theme={theme ?? "primary"} onClick={(...args) => {
+        <StyledButton {...props} ref={ref} size={size ?? 'small'} theme={theme ?? 'primary'} onClick={(...args) => {
             if(!disabled && onClick)
                 return onClick(...args);
         }} disabled={disabled}>
-            {children ?? "Button"}
+            {children ?? 'Button'}
         </StyledButton>
     );
 });
