@@ -78,19 +78,13 @@ const StyledSpinner2 = styled('span', {
     }
 });
 
-export default class Spinner extends React.Component {
-    render() {
-        const { margin, visible } = this.props;
-        const size = this.props.size ?? 32;
-        return (
-            <StyledSpinner style={{
-                "--size": `${size}px`,
-                margin: margin ?? 0,
-                display: `${(visible == null ? true : visible) ? "block" : "none"}`,
-                overflow: 'hidden'
-            }}>
-                <StyledSpinner2/>
-            </StyledSpinner>
-        );
-    }
+export default function Spinner({ size, margin, visible }) {
+    return <StyledSpinner css={{
+        margin: margin ?? 0,
+        display: `${(visible == null ? true : visible) ? 'block' : 'none'}`,
+        overflow: 'hidden',
+        '--size': `${size ?? 32}px`
+    }}>
+        <StyledSpinner2/>
+    </StyledSpinner>;
 };
