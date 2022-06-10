@@ -6,5 +6,11 @@ export default styled(Label.Root, {
     fontWeight: 500,
     userSelect: 'none',
     fontFamily: 'Nunito',
-    marginBottom: 4
+    marginBottom: 4,
+
+    variants: {
+        spacious: {
+            true: { marginTop: 8 }
+        }
+    }
 });
