@@ -1,11 +1,11 @@
 import React from 'react';
+import { blackA } from '@radix-ui/colors';
 import { styled, keyframes } from '@stitches/react';
-import { blackA, mauveDark } from '@radix-ui/colors';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 
-import ThemeContext from '/voxeliface/contexts/theme';
+import ThemeContext from '../contexts/theme';
 
-import { getTheme } from '/voxeliface/lib/themes';
+import { getTheme } from '../lib/themes';
 const overlayShow = keyframes({
     '0%': { opacity: 0 },
     '100%': { opacity: 1 }

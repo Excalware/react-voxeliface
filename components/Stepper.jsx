@@ -4,8 +4,7 @@ import { styled, keyframes } from '@stitches/react';
 import Grid from './Grid';
 import Typography from './Typography';
 
-import util from '/lib/util';
-
+import util from '../lib/util';
 const DividerComponent = styled('div', {
     width: 1,
     height: 1,

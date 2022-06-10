@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Grid from '/voxeliface/components/Grid';
-
+import Grid from './Grid';
 export default function Range({ min, max, value, onChange, disabled, css }) {
     return (
         <Grid

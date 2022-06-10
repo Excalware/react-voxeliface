@@ -3,10 +3,10 @@ import { styled } from '@stitches/react';
 import { Check, ChevronDown } from 'react-bootstrap-icons';
 import * as Select from '@radix-ui/react-select';
 
-import Grid from '/voxeliface/components/Grid';
-import ThemeContext from '/voxeliface/contexts/theme';
+import Grid from '../Grid';
+import ThemeContext from '../../contexts/theme';
 
-import { getTheme } from '/voxeliface/lib/themes';
+import { getTheme } from '../../lib/themes';
 const StyledTrigger = styled(Select.Trigger, {
     all: 'unset',
     gap: '2rem',

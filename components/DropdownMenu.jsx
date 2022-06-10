@@ -2,9 +2,9 @@ import React from 'react';
 import { styled, keyframes } from '@stitches/react';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
-import ThemeContext from '/voxeliface/contexts/theme';
+import ThemeContext from '../contexts/theme';
 
-import { getTheme } from '/voxeliface/lib/themes';
+import { getTheme } from '../lib/themes';
 const slideUpAndFade = keyframes({
     '0%': { opacity: 0, transform: 'translateY(2px)' },
     '100%': { opacity: 1, transform: 'translateY(0)' }
