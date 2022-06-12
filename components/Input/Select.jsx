@@ -64,6 +64,7 @@ const StyledItem = styled(Select.Item, {
     },
 
     '&:focus': {
+        boxShadow: '$buttonShadow',
         background: '$buttonBackground'
     }
 });

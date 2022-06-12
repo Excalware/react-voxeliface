@@ -30,6 +30,7 @@ const StyledTab = styled('button', {
     height: '100%',
     border: 'none',
     display: 'flex',
+    outline: 'none',
     padding: '.45rem 2rem .45rem .75rem',
     overflow: 'hidden',
     fontSize: '.7rem',
@@ -46,10 +47,8 @@ const StyledTab = styled('button', {
     },
     '&:hover': {
         cursor: 'pointer',
+        boxShadow: '$buttonShadowTop',
         background: '$secondaryBackground'
-    },
-    '&:focus': {
-        outline: '1px solid $secondaryBorder2'
     }
 });
 
@@ -87,6 +86,7 @@ export default function Tabs({ css, value, onChange, children, borderRadius }) {
                 {children.map(({ props }, index) => <React.Fragment key={index}>
                     <StyledTab ref={props.value === value ? handleTabRect : null} css={{
                         color: props.value === value && '$primaryColor',
+                        boxShadow: props.value === value && '$buttonShadowTop',
                         background: props.value === value && '$secondaryBackground',
                         fontWeight: props.value === value && 450
                     }} onClick={_ => onChange({ target: { value: props.value }})}>

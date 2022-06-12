@@ -71,7 +71,7 @@ const itemStyles = {
     },
 
     '&:focus': {
-        color: '#fff',
+        boxShadow: '$buttonShadow',
         background: '$buttonBackground'
     }
 };

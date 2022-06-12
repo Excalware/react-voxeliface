@@ -4,12 +4,14 @@ import { List } from 'react-bootstrap-icons';
 import { animated, useTransition } from 'react-spring';
 
 import Grid from '../Grid';
+import * as Tooltip from '../Tooltip';
 const StyledTab = styled('button', {
     gap: 16,
     color: '$primaryColor',
     width: '100%',
     border: 'none',
     display: 'flex',
+    outline: 'none',
     padding: '.65rem .75rem',
     overflow: 'hidden',
     fontSize: '.85rem',
@@ -26,6 +28,7 @@ const StyledTab = styled('button', {
     },
     '&:hover': {
         cursor: 'pointer',
+        boxShadow: '$buttonShadow',
         background: '$secondaryBackground'
     }
 });
@@ -34,11 +37,26 @@ export default function SideNavigation({ css, value, onChange, children, borderR
     children = children.filter(c => !c.props.disabled);
 
     const item = children.find(c => c.props.value === value) ?? children[0];
-    const [tabRect, setTabRect] = useState();
-    const [tabsRect, setTabsRect] = useState();
+    const items = React.Children.map(children, ({ props }) =>
+        <Tooltip.Root delayDuration={250} {...props}>
+            <Tooltip.Trigger asChild>
+                <StyledTab css={{
+                    padding: props.padding,
+                    boxShadow: props.value === value && '$buttonShadow',
+                    background: props.value === value && '$secondaryBackground',
+                    fontWeight: props.value === value && 450
+                }} onClick={() => onChange(props.value)}>
+                    {props.icon}
+                    {props.name}
+                </StyledTab>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="right" sideOffset={8}>
+                {props.name}
+                <Tooltip.Arrow/>
+            </Tooltip.Content>
+        </Tooltip.Root>
+    );
     const [expanded, setExpanded] = useState(false);
-    const handleTabRect = useCallback(node => setTabRect(node?.getBoundingClientRect()), []);
-    const handleTabsRect = useCallback(node => setTabsRect(node?.getBoundingClientRect()), []);
     const transitions = useTransition([item.props.value], {
         from: { opacity: 0 },
         enter: { opacity: 1 },
@@ -52,7 +70,7 @@ export default function SideNavigation({ css, value, onChange, children, borderR
             ...css
         }}>
             <Grid css={{ borderRight: '1px solid $secondaryBorder' }}> 
-                <Grid ref={handleTabsRect} width={expanded ? "16rem" : 42} margin={6} spacing={6} direction="vertical" css={{
+                <Grid width={expanded ? '16rem' : 40} margin={6} spacing={6} direction="vertical" css={{
                     overflow: 'hidden',
                     position: 'relative',
                     transition: 'width 250ms cubic-bezier(0.4, 0, 0.2, 1)',
@@ -63,34 +81,16 @@ export default function SideNavigation({ css, value, onChange, children, borderR
                     }}>
                         <List size={18}/>
                     </StyledTab>
-                    {children.filter(c => !c.props.footer).map(({ props }, index) =>
-                        <StyledTab key={index} ref={props.value === value ? handleTabRect : null} css={{
-                            background: props.value === value && '$secondaryBackground',
-                            fontWeight: props.value === value && 450
-                        }} onClick={() => onChange(props.value)}>
-                            {props.icon}
-                            {props.name}
-                        </StyledTab>
-                    )}
+                    {items.filter(c => !c.props.footer)}
                     <Grid width="100%" spacing={6} direction="vertical" css={{
                         bottom: 0,
                         position: 'absolute'
                     }}>
-                        {children.filter(c => c.props.footer).map(({ props }, index) =>
-                            <StyledTab key={index} ref={props.value === value ? handleTabRect : null} css={{
-                                background: props.value === value && '$secondaryBackground',
-                                fontWeight: props.value === value && 450
-                            }} onClick={() => onChange(props.value)}>
-                                {props.icon}
-                                {props.name}
-                            </StyledTab>
-                        )}
+                        {items.filter(c => c.props.footer)}
                     </Grid>
                     <Grid borderRadius={2} css={{
-                        top: (tabRect?.y - tabsRect?.y) + 6,
                         left: 0,
                         width: 3,
-                        height: tabRect?.height - 12,
                         position: 'absolute',
                         transition: 'top 250ms cubic-bezier(0.4, 0, 0.2, 1)',
                         background: '$buttonBackground'
