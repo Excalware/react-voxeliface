@@ -15,6 +15,7 @@ export default function Markdown({ css, text, rehypePlugins }) {
             marginBottom: 0
         },
         '& h2': {
+            width: '100%',
             fontSize: '1.4em',
             marginTop: 24,
             marginBottom: '1rem',
