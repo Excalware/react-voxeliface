@@ -34,7 +34,7 @@ const StyledTab = styled('button', {
 });
 
 export default function SideNavigation({ css, value, onChange, children, borderRadius }) {
-    children = children.filter(c => !c.props.disabled);
+    children = React.Children.toArray(children).filter(c => !c.props.disabled);
 
     const item = children.find(c => c.props.value === value) ?? children[0];
     const items = React.Children.map(children, ({ props }) =>
