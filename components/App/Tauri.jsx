@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Back, ArrowClockwise, ExclamationTriangleFill } from 'react-bootstrap-icons';
 
@@ -8,17 +8,10 @@ import Typography from '../Typography';
 import ThemeContext from '../../contexts/theme';
 
 import { getTheme } from '../../lib/themes';
-export default function TauriApp({ css, theme: theme2, children, ...props }) {
-    const [theme, setTheme] = useState({
-        theme: theme2 ?? 'default',
-        setTheme: value => setTheme({
-            theme: value,
-            setTheme: theme.setTheme
-        })
-    });
+export default function TauriApp({ css, theme, children, ...props }) {
     return (
-        <ThemeContext.Provider value={theme}>
-            <Grid width="100vw" height="100vh" className={getTheme(theme.theme)} direction="vertical" {...props} css={{
+        <ThemeContext.Provider value={{ theme }}>
+            <Grid width="100vw" height="100vh" className={getTheme(theme)} direction="vertical" {...props} css={{
                 maxWidth: '100vw',
                 minWidth: '100vw',
                 overflow: 'hidden',
