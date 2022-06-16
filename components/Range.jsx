@@ -31,7 +31,7 @@ export default function Range({ min, max, value, onChange, disabled, css }) {
                     fontSize: '.9rem',
                     boxShadow: '0 0 8px #0000004d',
                     userSelect: 'none',
-                    fontFamily: 'Nunito',
+                    fontFamily: '$primaryFont',
                     borderRadius: 4
                 }}>{value ?? 0}</Grid>
             </Grid>

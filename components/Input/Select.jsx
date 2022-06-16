@@ -16,7 +16,7 @@ const StyledTrigger = styled(Select.Trigger, {
     padding: '.375rem 1rem',
     fontSize: '.75rem',
     fontWeight: 500,
-    fontFamily: 'Nunito',
+    fontFamily: '$primaryFont',
     alignItems: 'center',
     background: '$primaryBackground',
     transition: 'border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
@@ -53,7 +53,7 @@ const StyledItem = styled(Select.Item, {
     position: 'relative',
     fontWeight: 500,
     userSelect: 'none',
-    fontFamily: 'Nunito',
+    fontFamily: '$primaryFont',
     alignItems: 'center',
     transition: 'background 250ms cubic-bezier(0.4, 0, 0.2, 1)',
     borderRadius: 4,
@@ -78,7 +78,7 @@ const StyledLabel = styled(Select.Label, {
     padding: '0 .5rem',
     fontSize: '.8rem',
     fontWeight: 400,
-    fontFamily: 'Nunito',
+    fontFamily: '$primaryFont',
     lineHeight: '24px'
 });
 const StyledSeparator = styled(Select.Separator, {

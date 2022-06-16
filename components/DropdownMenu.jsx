@@ -60,7 +60,7 @@ const itemStyles = {
     lineHeight: 1,
     fontWeight: 500,
     userSelect: 'none',
-    fontFamily: 'Nunito',
+    fontFamily: '$primaryFont',
     alignItems: 'center',
     transition: 'background 250ms cubic-bezier(0.4, 0, 0.2, 1)',
     borderRadius: 3,
@@ -92,7 +92,7 @@ const StyledLabel = styled(DropdownMenuPrimitive.Label, {
     padding: '0 .5rem',
     fontSize: '.8rem',
     fontWeight: 400,
-    fontFamily: 'Nunito',
+    fontFamily: '$primaryFont',
     lineHeight: '24px'
 });
 

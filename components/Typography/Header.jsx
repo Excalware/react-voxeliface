@@ -7,7 +7,7 @@ export default function Header({ text, spacious, children }) {
         size="1.2rem"
         color="$primaryColor"
         weight={600}
-        family="Nunito Sans"
+        family="$primaryFontSans"
         spacing="1rem"
         css={{
             width: '100%',

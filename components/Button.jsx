@@ -11,7 +11,7 @@ const StyledButton = styled('a', {
     position: 'relative',
     fontSize: '.75rem',
     transition: 'background 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1)',
-    fontFamily: 'Nunito',
+    fontFamily: '$primaryFont',
     fontWeight: 625,
     lineHeight: 1.43,
     userSelect: 'none',
@@ -34,7 +34,7 @@ const StyledButton = styled('a', {
                 boxShadow: '#00000024 0px 2px 10px',
                 fontWeight: 700,
                 textShadow: 'none',
-                fontFamily: 'Nunito Sans',
+                fontFamily: '$primaryFontSans',
                 borderRadius: 6
             },
             small: {
@@ -131,7 +131,7 @@ const StyledButton = styled('a', {
                 fontWeight: 700,
                 textShadow: 'none',
                 background: '#c9565680',
-                fontFamily: 'Nunito Sans',
+                fontFamily: '$primaryFontSans',
                 borderRadius: 6,
                 letterSpacing: .2
             }

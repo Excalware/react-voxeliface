@@ -96,7 +96,7 @@ export default function Stepper({ step, steps }) {
                                     <Typography
                                         size={14}
                                         color={item[2] <= step ? '$primaryColor' : '$secondaryColor'}
-                                        family="Nunito Sans"
+                                        family="$primaryFontSans"
                                         weight={item[2] <= step ? 400 : 300}
                                     >
                                         {item[0]}

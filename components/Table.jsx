@@ -13,14 +13,14 @@ const StyledTable = styled('table', {
     '& th': {
         color: '$secondaryColor',
         fontWeight: 600,
-        fontFamily: 'Nunito Sans',
+        fontFamily: '$primaryFontSans',
         borderBottom: '1px solid $secondaryBorder',
         backgroundVolor: '#222222'
     },
     '& td': {
         color: '$primaryColor',
         fontWeight: 500,
-        fontFamily: 'Nunito',
+        fontFamily: '$primaryFont',
         borderBottom: '1px solid $secondaryBorder',
         backgroundColor: '#1D1D1D'
     },

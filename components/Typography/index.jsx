@@ -9,7 +9,8 @@ const StyledTypography = styled('span', {
     fontSize: '1rem',
     textAlign: 'center',
     fontWeight: 500,
-    alignItems: 'center'
+    alignItems: 'center',
+    fontFamily: '$primaryFont'
 });
 
 export default function Typography(props) {

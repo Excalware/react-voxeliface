@@ -28,7 +28,7 @@ export default function Card({ css, title, buttons, padding, children, direction
                         text={title ?? "Card Title"}
                         color="$primaryColor"
                         weight={600}
-                        family="Nunito Sans"
+                        family="$primaryFontSans"
                     />
                 : title}
                 <Grid spacing={8} alignItems="center">

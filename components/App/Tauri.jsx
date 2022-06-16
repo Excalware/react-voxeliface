@@ -23,11 +23,11 @@ export default function TauriApp({ css, theme, children, ...props }) {
                 <ErrorBoundary
                     FallbackComponent={({error, resetErrorBoundary, componentStack}) => (
                         <Grid width="100%" height="100%" direction="vertical" alignItems="center" background="$primaryBackground" justifyContent="center">
-                            <Typography size="1.3rem" color="$primaryColor" weight={700} family="Nunito" lineheight={1.5}>
+                            <Typography size="1.3rem" color="$primaryColor" weight={700}  lineheight={1.5}>
                                 <ExclamationTriangleFill size={40} style={{ margin: '0 12px' }}/>
                                 Crashed!
                             </Typography>
-                            <Typography size=".9rem" color="$secondaryColor" margin="12px 0 0" family="Nunito">
+                            <Typography size=".9rem" color="$secondaryColor" margin="12px 0 0" >
                                 Looks like the application crashed unexpectedly...<br/>
                                 "{error.message}"
                             </Typography>

@@ -36,7 +36,7 @@ const StyledTab = styled('button', {
     fontSize: '.7rem',
     fontWeight: 400,
     background: 'none',
-    fontFamily: 'Nunito',
+    fontFamily: '$primaryFont',
     whiteSpace: 'nowrap',
     alignItems: 'center',
     transition: 'all 250ms cubic-bezier(0.4, 0, 0.2, 1)',

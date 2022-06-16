@@ -31,7 +31,7 @@ const StyledContent = styled(TooltipPrimitive.Content, {
     fontSize: '.75rem',
     boxShadow: '0 0 4px 2px rgba(0, 0, 0, .1)',
     lineHeight: 1,
-    fontFamily: 'Nunito',
+    fontFamily: '$primaryFont',
     background: '$primaryBackground',
     borderRadius: 6,
     '@media (prefers-reduced-motion: no-preference)': {

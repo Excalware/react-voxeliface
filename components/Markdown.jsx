@@ -18,7 +18,7 @@ export default function Markdown({ css, text, rehypePlugins = [] }) {
         wordWrap: 'break-word',
         fontWeight: 500,
         alignItems: 'start',
-        fontFamily: 'Nunito Sans',
+        fontFamily: '$primaryFontSans',
 
         '& > *:first-child': {
             color: '$primaryColor',
@@ -67,7 +67,7 @@ export default function Markdown({ css, text, rehypePlugins = [] }) {
         '& table th': {
             color: '$secondaryColor',
             fontWeight: 600,
-            fontFamily: 'Nunito Sans'
+            fontFamily: '$primaryFontSans'
         },
         '& table td': {
             color: '$primaryColor',

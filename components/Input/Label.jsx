@@ -5,7 +5,7 @@ export default styled(Label.Root, {
     fontSize: '.9rem',
     fontWeight: 500,
     userSelect: 'none',
-    fontFamily: 'Nunito',
+    fontFamily: '$primaryFont',
     marginBottom: 4,
 
     variants: {

@@ -58,7 +58,7 @@ const StyledTitle = styled(DialogPrimitive.Title, {
     margin: 0,
     fontSize: 20,
     fontWeight: 600,
-    fontFamily: 'Nunito'
+    fontFamily: '$primaryFont'
 });
   
 const StyledDescription = styled(DialogPrimitive.Description, {

@@ -17,7 +17,7 @@ const StyledInputTag = styled('input', {
     background: '$primaryBackground',
     transition: 'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     fontWeight: 500,
-    fontFamily: 'Nunito',
+    fontFamily: '$primaryFont',
     borderRadius: '0 4px 4px 0',
 
     '&:not(:read-only):hover': {
