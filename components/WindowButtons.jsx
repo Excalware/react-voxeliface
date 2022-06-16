@@ -2,16 +2,15 @@ import React from 'react';
 import { styled } from '@stitches/react';
 import { exit } from '@tauri-apps/api/process';
 import { appWindow } from '@tauri-apps/api/window';
-import { XLg, Fullscreen, FullscreenExit } from 'react-bootstrap-icons';
+import { XLg, DashLg, Square } from 'react-bootstrap-icons';
 
 import Grid from './Grid';
-
 const StyledWindowButtons = styled(Grid, {
     height: "100%"
 });
 
 const WindowButtonComponent = styled('button', {
-    color: "#cccbcb",
+    color: "$secondaryColor",
     border: "none",
     cursor: "pointer",
     padding: 0,
@@ -20,7 +19,7 @@ const WindowButtonComponent = styled('button', {
     transition: "color 0.2s",
 
     "&:hover": {
-        color: "#fff"
+        color: "$primaryColor"
     }
 });
 
@@ -38,10 +37,10 @@ export default function WindowButtons() {
                 <XLg/>
             </WindowButtonComponent>
             <WindowButtonComponent onClick={maximize}>
-                <Fullscreen/>
+                <Square size={14}/>
             </WindowButtonComponent>
             <WindowButtonComponent onClick={minimize}>
-                <FullscreenExit/>
+                <DashLg/>
             </WindowButtonComponent>
         </StyledWindowButtons>
     );
