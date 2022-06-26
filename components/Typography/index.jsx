@@ -2,15 +2,15 @@ import React from 'react';
 import { styled } from '@stitches/react';
 
 const StyledTypography = styled('span', {
-    gap: 8,
     color: '#fff',
     margin: 0,
     display: 'flex',
     fontSize: '1rem',
-    textAlign: 'center',
+    textAlign: 'start',
     fontWeight: 500,
-    alignItems: 'center',
-    fontFamily: '$primaryFont'
+    fontFamily: '$primaryFont',
+    flexDirection: 'column',
+    justifyContent: 'center'
 });
 
 export default function Typography(props) {
