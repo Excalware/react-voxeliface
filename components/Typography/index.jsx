@@ -25,8 +25,10 @@ export default function Typography(props) {
             textAlign: props.textalign,
             fontWeight: props.weight ?? 500,
             fontFamily: props.family,
+            alignItems: props.horizontal && 'center',
             lineHeight: props.lineheight ?? 1.43,
             whiteSpace: props.whitespace,
+            flexDirection: props.horizontal && 'row',
             ...props.css
         }}>
             {props.text}
